@@ -3,39 +3,49 @@ import DataTable from 'datatables.net-dt';
 
 import axios from 'axios';
 const url = "http://localhost:3000/";
-
+let table
 
 
 
 $(document).ready(function () {
     loadTable()
     
-    $("#btnSalvar").click(async function () {
-        var name = $("#txtName").val()
-        var email = $("#txtEmail").val()
-        var admin = $("#boolAdmin").val()
-        var password = $("#txtPassword").val()
-        console.log(name, email, admin, password)
-    
-        
-         await axios.post(url + 'users', {
-            name:name,
-            email:email,
-            admin:admin,
-            password:password
-         }).then(function (response){
-             alert("Usuário criado com sucesso")
-             loadTable()
-         }).catch(function(error){
-             alert(error)
-         });
-    });
 })
 
 
+$("#btnSalvar").click(async function () {
+    var name = $("#txtName").val()
+    var email = $("#txtEmail").val()
+    var admin = $("#boolAdmin").val()
+    var password = $("#txtPassword").val()
+    // console.log(name, email, admin, password)
+
+    await axios.post(url + 'users', {
+        name:name,
+        email:email,
+        admin:admin,
+        password:password
+    }).then(function (response){
+        alert("Usuário criado com sucesso")
+    }).catch(function(error){
+        alert(error)
+    });
+    await refreshTable()
+});
+
+
+async function refreshTable(){
+    try {
+        const response = await axios(url + "users");
+        table.clear().rows.add(response.data).draw();
+    } catch (error) {
+        alert("Erro ao atualizar a tabela: " + error);
+    }
+}
+
 async function loadTable(){
     await axios(url + "users").then(function(response){
-        $('#tabelaLista').DataTable({
+        table = $('#tabelaLista').DataTable({
             data: response.data,
             columnDefs:[
                 {title: "Id", targets: 0},

@@ -28665,48 +28665,79 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var url = "http://localhost:3000/";
+var table;
 $(document).ready(function () {
   loadTable();
-  $("#btnSalvar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-    var name, email, admin, password;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          name = $("#txtName").val();
-          email = $("#txtEmail").val();
-          admin = $("#boolAdmin").val();
-          password = $("#txtPassword").val();
-          console.log(name, email, admin, password);
-          _context.next = 7;
-          return _axios.default.post(url + 'users', {
-            name: name,
-            email: email,
-            admin: admin,
-            password: password
-          }).then(function (response) {
-            alert("Usuário criado com sucesso");
-            loadTable();
-          }).catch(function (error) {
-            alert(error);
-          });
-        case 7:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  })));
 });
+$("#btnSalvar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+  var name, email, admin, password;
+  return _regeneratorRuntime().wrap(function _callee$(_context) {
+    while (1) switch (_context.prev = _context.next) {
+      case 0:
+        name = $("#txtName").val();
+        email = $("#txtEmail").val();
+        admin = $("#boolAdmin").val();
+        password = $("#txtPassword").val(); // console.log(name, email, admin, password)
+        _context.next = 6;
+        return _axios.default.post(url + 'users', {
+          name: name,
+          email: email,
+          admin: admin,
+          password: password
+        }).then(function (response) {
+          alert("Usuário criado com sucesso");
+        }).catch(function (error) {
+          alert(error);
+        });
+      case 6:
+        _context.next = 8;
+        return refreshTable();
+      case 8:
+      case "end":
+        return _context.stop();
+    }
+  }, _callee);
+})));
+function refreshTable() {
+  return _refreshTable.apply(this, arguments);
+}
+function _refreshTable() {
+  _refreshTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return (0, _axios.default)(url + "users");
+        case 3:
+          response = _context2.sent;
+          table.clear().rows.add(response.data).draw();
+          _context2.next = 10;
+          break;
+        case 7:
+          _context2.prev = 7;
+          _context2.t0 = _context2["catch"](0);
+          alert("Erro ao atualizar a tabela: " + _context2.t0);
+        case 10:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+  return _refreshTable.apply(this, arguments);
+}
 function loadTable() {
   return _loadTable.apply(this, arguments);
 }
 function _loadTable() {
-  _loadTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
+  _loadTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _context2.next = 2;
+          _context3.next = 2;
           return (0, _axios.default)(url + "users").then(function (response) {
-            $('#tabelaLista').DataTable({
+            table = $('#tabelaLista').DataTable({
               data: response.data,
               columnDefs: [{
                 title: "Id",
@@ -28743,9 +28774,9 @@ function _loadTable() {
           });
         case 2:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _loadTable.apply(this, arguments);
 }
@@ -28774,7 +28805,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61007" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51738" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
