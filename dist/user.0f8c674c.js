@@ -28698,44 +28698,103 @@ $("#btnSalvar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRu
     }
   }, _callee);
 })));
+$("#btnCancelar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    while (1) switch (_context2.prev = _context2.next) {
+      case 0:
+        try {
+          $("#txtName").val('');
+          $("#txtEmail").val('');
+          $("#boolAdmin").val('');
+          $("#txtPassword").val('');
+        } catch (errors) {
+          alert(errors);
+        }
+      case 1:
+      case "end":
+        return _context2.stop();
+    }
+  }, _callee2);
+})));
 function refreshTable() {
   return _refreshTable.apply(this, arguments);
 }
 function _refreshTable() {
-  _refreshTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  _refreshTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     var response;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _context2.prev = 0;
-          _context2.next = 3;
+          _context3.prev = 0;
+          _context3.next = 3;
           return (0, _axios.default)(url + "users");
         case 3:
-          response = _context2.sent;
+          response = _context3.sent;
           table.clear().rows.add(response.data).draw();
-          _context2.next = 10;
+          _context3.next = 10;
           break;
         case 7:
-          _context2.prev = 7;
-          _context2.t0 = _context2["catch"](0);
-          alert("Erro ao atualizar a tabela: " + _context2.t0);
+          _context3.prev = 7;
+          _context3.t0 = _context3["catch"](0);
+          alert("Erro ao atualizar a tabela: " + _context3.t0);
         case 10:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee3, null, [[0, 7]]);
   }));
   return _refreshTable.apply(this, arguments);
 }
+function deleteUser(_x) {
+  return _deleteUser.apply(this, arguments);
+}
+function _deleteUser() {
+  _deleteUser = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.prev = 0;
+          _context4.next = 3;
+          return _axios.default.delete(url + 'users/' + id);
+        case 3:
+          alert("Deletado com sucesso");
+          _context4.next = 9;
+          break;
+        case 6:
+          _context4.prev = 6;
+          _context4.t0 = _context4["catch"](0);
+          alert(_context4.t0);
+        case 9:
+          _context4.next = 11;
+          return refreshTable();
+        case 11:
+        case "end":
+          return _context4.stop();
+      }
+    }, _callee4, null, [[0, 6]]);
+  }));
+  return _deleteUser.apply(this, arguments);
+}
+$('#tabelaLista').on('click', 'button', function (e) {
+  var row = table.row($(this).parents('tr'));
+  var rowData = row.data();
+  if (this.id === 'edit') {
+    var blocks = row.find('*');
+    blocks.forEach(function () {});
+    console.log(blocks);
+  } else {
+    deleteUser(rowData['id']);
+  }
+});
 function loadTable() {
   return _loadTable.apply(this, arguments);
 }
 function _loadTable() {
-  _loadTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+  _loadTable = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          _context3.next = 2;
+          _context5.next = 2;
           return (0, _axios.default)(url + "users").then(function (response) {
             table = $('#tabelaLista').DataTable({
               data: response.data,
@@ -28774,9 +28833,9 @@ function _loadTable() {
           });
         case 2:
         case "end":
-          return _context3.stop();
+          return _context5.stop();
       }
-    }, _callee3);
+    }, _callee5);
   }));
   return _loadTable.apply(this, arguments);
 }

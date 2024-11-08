@@ -34,6 +34,17 @@ $("#btnSalvar").click(async function () {
 });
 
 
+$("#btnCancelar").click(async function(){
+    try{
+        $("#txtName").val('')
+        $("#txtEmail").val('')
+        $("#boolAdmin").val('')
+        $("#txtPassword").val('')
+    }catch(errors){
+        alert(errors)
+    }
+})
+
 async function refreshTable(){
     try {
         const response = await axios(url + "users");
@@ -42,6 +53,32 @@ async function refreshTable(){
         alert("Erro ao atualizar a tabela: " + error);
     }
 }
+
+async function deleteUser(id){
+    try{
+        await axios.delete(url + 'users/' + id)
+        alert("Deletado com sucesso")
+    }catch(e){
+        alert(e)
+    }
+    await refreshTable()
+}
+
+
+$('#tabelaLista').on('click', 'button', function (e) {
+    var row = table.row($(this).parents('tr'));
+    var rowData = row.data()
+    if (this.id === 'edit') {
+        var blocks = row.find('*')
+        blocks.forEach(function() {
+
+        });
+        console.log(blocks)
+    } else {
+        deleteUser(rowData['id']);
+    }
+});
+
 
 async function loadTable(){
     await axios(url + "users").then(function(response){
