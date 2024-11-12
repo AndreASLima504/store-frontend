@@ -87,10 +87,10 @@ $('#tabelaLista').on('click', 'button', function (e) {
     var row = table.row($(this).parents('tr'));
     var rowData = row.data()
     if (this.id === 'edit') {
-        var blocks = row.find('*')
-        blocks.forEach(function() {
-
-        });
+        $("#txtId").val(rowData['id'])
+        $("#txtName").val(rowData['name'])
+        $("#txtEmail").val(rowData['email'])
+        $("#txtAdmin").val(rowData['admin'].toString())
         console.log(blocks)
     } else {
         deleteUser(rowData['id']);

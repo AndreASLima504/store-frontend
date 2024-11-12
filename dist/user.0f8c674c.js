@@ -28745,24 +28745,23 @@ function _refreshTable() {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          console.log("refreshado");
-          _context3.prev = 1;
-          _context3.next = 4;
+          _context3.prev = 0;
+          _context3.next = 3;
           return (0, _axios.default)(url + "users");
-        case 4:
+        case 3:
           response = _context3.sent;
           table.clear().rows.add(response.data).draw();
-          _context3.next = 11;
+          _context3.next = 10;
           break;
-        case 8:
-          _context3.prev = 8;
-          _context3.t0 = _context3["catch"](1);
+        case 7:
+          _context3.prev = 7;
+          _context3.t0 = _context3["catch"](0);
           alert("Erro ao atualizar a tabela: " + _context3.t0);
-        case 11:
+        case 10:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[1, 8]]);
+    }, _callee3, null, [[0, 7]]);
   }));
   return _refreshTable.apply(this, arguments);
 }
@@ -28800,8 +28799,10 @@ $('#tabelaLista').on('click', 'button', function (e) {
   var row = table.row($(this).parents('tr'));
   var rowData = row.data();
   if (this.id === 'edit') {
-    var blocks = row.find('*');
-    blocks.forEach(function () {});
+    $("#txtId").val(rowData['id']);
+    $("#txtName").val(rowData['name']);
+    $("#txtEmail").val(rowData['email']);
+    $("#txtAdmin").val(rowData['admin'].toString());
     console.log(blocks);
   } else {
     deleteUser(rowData['id']);
@@ -28885,7 +28886,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50624" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51283" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

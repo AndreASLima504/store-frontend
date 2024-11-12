@@ -2,9 +2,11 @@
 
 <head>
     <title>Gestão Produto</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /></head>
 <body class="container">
     <h1>Gestão Produtos</h1>
     <section id="formCadastro">
@@ -13,22 +15,25 @@
         </div>
         <div id="dadosCadastro">
 
+                <label>Id:</label>
+                <input id="txtId" type="text">
+
                 <label>Nome:</label>
-                <input type="text">
+                <input id="txtName" type="text">
 
                 <label>Descrição:</label>
-                <input type="text">
+                <input id="txtDescription" type="text">
 
                 <label>Preço:</label>
-                <input type="text">
+                <input id="txtPrice" type="text">
 
                 <label>Categoria:</label>
-                <select>
+                <select id="selectCategory">
                 </select>
 
             <div id="buttons">
-                <input class="btn btn-success" type="button" value="Salvar">
-                <input class="btn btn-danger" type="button" value="Limpar">
+                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar">
+                <input id="btnCancelar" class="btn btn-danger" type="button" value="Limpar">
                 <a class="btn btn-secondary" href="/menu.html">Voltar ao menu</a>
             </div>
         </div>
@@ -37,30 +42,10 @@
     <br>
     <h2>Lista:</h2>
     <table id="tabelaLista"">
-        <tr>
-            <th>Codigo</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Categoria</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Navalha</td>
-            <td>Objeto cortante</td>
-            <td>2.0</td>
-            <td>Estética</td>
-            <td>   <input type="button" value="Editar"/>    <input type="button" value="Excluir"/></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Caneta azul</td>
-            <td>Marcada com a minha letra</td>            
-            <td>1.0</td>
-            <td>Material escolar</td>
-            <td>   <input type="button" value="Editar"/>    <input type="button" value="Excluir"/></td>
-        </tr>
+        
     </table>
+
+    <script src="../js/product.js"></script>
 </body>
 
 
