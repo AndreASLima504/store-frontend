@@ -2,8 +2,13 @@
 
 <head>
     <title>Gestão Categorias</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="/estilo.657dcd8d.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+
+
 </head>
 <body class="container">
     <h1>Gestão Categorias</h1>
@@ -12,16 +17,19 @@
             <h2>Criar categoria</h2>
         </div>
         <div id="dadosCadastro">
-                <label>Nome:</label>
-                <input type="text">
+            <label>Id:</label>
+            <input id="txtId" type="text">
 
-                <label>Descrição:</label>
-                <input type="text">
+            <label>Nome:</label>
+            <input id="txtName" type="text">
+
+            <label>Descrição:</label>
+            <input id="txtDescription" type="text">
 
 
             <div id="buttons">
-                <input class="btn btn-success" type="button" value="Salvar">
-                <input class="btn btn-danger" type="button" value="Limpar">
+                <input class="btn btn-success" id="btnSalvar" type="button" value="Salvar">
+                <input class="btn btn-danger" id="btnCancelar" type="button" value="Limpar">
                 <a class="btn btn-secondary" href="/menu.html">Voltar ao menu</a>
             </div>
         </div>
@@ -29,24 +37,10 @@
     
     <br>
     <h2>Lista:</h2>
-    <table id="tabelaLista" "="">
-        <tr>
-            <th>Codigo</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-        </tr><tr>
-            <td>1</td>
-            <td>Material escolar</td>
-            <td>materiais de escola</td>
-            <td>   <input type="button" value="Editar">    <input type="button" value="Excluir"></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Estética</td>
-            <td>produtos esteticos</td>
-            <td>   <input type="button" value="Editar">    <input type="button" value="Excluir"></td>
-        </tr>
+    <table id="tabelaLista">
+    
     </table>
+    <script src="/category.8cf2eda8.js"></script>
 </body>
 
 

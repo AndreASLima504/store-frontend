@@ -14,12 +14,14 @@ $(document).ready(function () {
 
 
 $("#btnSalvar").click(async function () {
+    var id = $("#txtId").val()
     var name = $("#txtName").val()
     var email = $("#txtEmail").val()
-    var admin = $("#boolAdmin").val()
+    var admin = ($("#boolAdmin").val() === "true")
     var password = $("#txtPassword").val()
     // console.log(name, email, admin, password)
 
+    if(!id){
     await axios.post(url + 'users', {
         name:name,
         email:email,
@@ -27,14 +29,25 @@ $("#btnSalvar").click(async function () {
         password:password
     }).then(function (response){
         alert("Usuário criado com sucesso")
+        cleanFields()
     }).catch(function(error){
         alert(error)
     });
+    }else{
+        await axios.put(url + 'users/' + id ,{
+            name:name,
+            email:email,
+            admin:admin,
+            password:password
+        }).then(function(response){
+
+        })
+    }
     await refreshTable()
 });
 
 
-$("#btnCancelar").click(async function(){
+function cleanFields(){
     try{
         $("#txtName").val('')
         $("#txtEmail").val('')
@@ -43,6 +56,11 @@ $("#btnCancelar").click(async function(){
     }catch(errors){
         alert(errors)
     }
+}
+
+
+$("#btnCancelar").click(async function(){
+    cleanFields()
 })
 
 async function refreshTable(){

@@ -28670,15 +28670,20 @@ $(document).ready(function () {
   loadTable();
 });
 $("#btnSalvar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var name, email, admin, password;
+  var id, name, email, admin, password;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
+        id = $("#txtId").val();
         name = $("#txtName").val();
         email = $("#txtEmail").val();
-        admin = $("#boolAdmin").val();
+        admin = $("#boolAdmin").val() === "true";
         password = $("#txtPassword").val(); // console.log(name, email, admin, password)
-        _context.next = 6;
+        if (id) {
+          _context.next = 10;
+          break;
+        }
+        _context.next = 8;
         return _axios.default.post(url + 'users', {
           name: name,
           email: email,
@@ -28686,30 +28691,45 @@ $("#btnSalvar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRu
           password: password
         }).then(function (response) {
           alert("Usuário criado com sucesso");
+          cleanFields();
         }).catch(function (error) {
           alert(error);
         });
-      case 6:
-        _context.next = 8;
-        return refreshTable();
       case 8:
+        _context.next = 12;
+        break;
+      case 10:
+        _context.next = 12;
+        return _axios.default.put(url + 'users/' + id, {
+          name: name,
+          email: email,
+          admin: admin,
+          password: password
+        }).then(function (response) {});
+      case 12:
+        _context.next = 14;
+        return refreshTable();
+      case 14:
       case "end":
         return _context.stop();
     }
   }, _callee);
 })));
+function cleanFields() {
+  try {
+    $("#txtName").val('');
+    $("#txtEmail").val('');
+    $("#boolAdmin").val('');
+    $("#txtPassword").val('');
+  } catch (errors) {
+    alert(errors);
+  }
+}
 $("#btnCancelar").click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
   return _regeneratorRuntime().wrap(function _callee2$(_context2) {
     while (1) switch (_context2.prev = _context2.next) {
       case 0:
-        try {
-          $("#txtName").val('');
-          $("#txtEmail").val('');
-          $("#boolAdmin").val('');
-          $("#txtPassword").val('');
-        } catch (errors) {
-          alert(errors);
-        }
+        cleanFields();
       case 1:
       case "end":
         return _context2.stop();
@@ -28725,23 +28745,24 @@ function _refreshTable() {
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
-          _context3.prev = 0;
-          _context3.next = 3;
+          console.log("refreshado");
+          _context3.prev = 1;
+          _context3.next = 4;
           return (0, _axios.default)(url + "users");
-        case 3:
+        case 4:
           response = _context3.sent;
           table.clear().rows.add(response.data).draw();
-          _context3.next = 10;
+          _context3.next = 11;
           break;
-        case 7:
-          _context3.prev = 7;
-          _context3.t0 = _context3["catch"](0);
+        case 8:
+          _context3.prev = 8;
+          _context3.t0 = _context3["catch"](1);
           alert("Erro ao atualizar a tabela: " + _context3.t0);
-        case 10:
+        case 11:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 7]]);
+    }, _callee3, null, [[1, 8]]);
   }));
   return _refreshTable.apply(this, arguments);
 }
@@ -28864,7 +28885,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51738" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50624" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
