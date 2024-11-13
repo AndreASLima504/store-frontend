@@ -134,7 +134,7 @@ async function loadTable(){
                 { data: "name" },
                 { data: "description" },
                 { data: "price" },
-                { data: "categoryName" },
+                { data: "categoryId" },
                 {data: null,
                     defaultContent: '<button id="edit">Editar</button>&nbsp;<button id="excluir">Excluir</button>',
                     targets: -1},
