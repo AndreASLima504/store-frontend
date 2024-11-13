@@ -2,16 +2,14 @@ import 'regenerator-runtime/runtime';
 import DataTable from 'datatables.net-dt';
 
 import axios from 'axios';
-const url = "http://localhost:3000/";
+const url = "http://localhost:3000/users/";
 let table
 
 
 
 $(document).ready(function () {
     loadTable()
-    
 })
-
 
 $("#btnSalvar").click(async function () {
     var id = $("#txtId").val()
@@ -22,7 +20,7 @@ $("#btnSalvar").click(async function () {
     // console.log(name, email, admin, password)
 
     if(!id){
-    await axios.post(url + 'users', {
+    await axios.post(url , {
         name:name,
         email:email,
         admin:admin,
@@ -34,21 +32,24 @@ $("#btnSalvar").click(async function () {
         alert(error)
     });
     }else{
-        await axios.put(url + 'users/' + id ,{
+        await axios.put(url + id ,{
             name:name,
             email:email,
             admin:admin,
             password:password
         }).then(function(response){
-
+            alert("Informações alteradas")
+            cleanFields()
+        }).catch(function(error){
+            alert(error)
         })
     }
     await refreshTable()
 });
 
-
 function cleanFields(){
     try{
+        $("#txtId").val('')
         $("#txtName").val('')
         $("#txtEmail").val('')
         $("#boolAdmin").val('')
@@ -58,23 +59,22 @@ function cleanFields(){
     }
 }
 
-
 $("#btnCancelar").click(async function(){
     cleanFields()
 })
 
 async function refreshTable(){
     try {
-        const response = await axios(url + "users");
-        table.clear().rows.add(response.data).draw();
+        const response = await axios(url);
+        table.clear().rows.add(response.data).draw()
     } catch (error) {
-        alert("Erro ao atualizar a tabela: " + error);
+        alert("Erro ao atualizar a tabela: " + error)
     }
 }
 
 async function deleteUser(id){
     try{
-        await axios.delete(url + 'users/' + id)
+        await axios.delete(url + id)
         alert("Deletado com sucesso")
     }catch(e){
         alert(e)
@@ -90,8 +90,7 @@ $('#tabelaLista').on('click', 'button', function (e) {
         $("#txtId").val(rowData['id'])
         $("#txtName").val(rowData['name'])
         $("#txtEmail").val(rowData['email'])
-        $("#txtAdmin").val(rowData['admin'].toString())
-        console.log(blocks)
+        $("#boolAdmin").val(rowData['admin'].toString())
     } else {
         deleteUser(rowData['id']);
     }
@@ -99,7 +98,7 @@ $('#tabelaLista').on('click', 'button', function (e) {
 
 
 async function loadTable(){
-    await axios(url + "users").then(function(response){
+    await axios(url).then(function(response){
         table = $('#tabelaLista').DataTable({
             data: response.data,
             columnDefs:[

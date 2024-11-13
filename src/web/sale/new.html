@@ -2,9 +2,12 @@
 
 <head>
     <title>Gestão Vendas</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
 <body class="container">
     <h1>Gestão Vendas</h1>
     <section id="formCadastro">
@@ -12,22 +15,27 @@
             <h2>Criar venda</h2>
         </div>
         <div id="dadosCadastro">
+                <label>ID:</label>
+                <input id="txtID" type="text">
             
                 <label>Usuario:</label>
-                <input type="text">
+                <input id = "txtUserID"type="text">
 
                 <label>ProdutoId:</label>
-                <input type="text">
+                <input id = "txtProdID" type="text">
 
                 <label>ClienteId:</label>
-                <input type="text">
+                <input id = "txtClientID" type="text">
 
                 <label>Quantidade:</label>
-                <input type="text">
+                <input id = "txtQuantity" type="text">
+
+                <label >Valor: </label>
+                <input id="txtValue" type="text">
 
             <div id="buttons">
-                <input class="btn btn-success" type="button" value="Salvar">
-                <input class="btn btn-danger" type="button" value="Limpar">
+                <input id="btnSalvar" class="btn btn-success" type="button" value="Salvar">
+                <input id="btnLimpar" class="btn btn-danger" type="button" value="Limpar">
                 <a class="btn btn-secondary" href="/menu.html">Voltar ao menu</a>
             </div>
         </div>
@@ -35,31 +43,10 @@
     
     <br>
     <h2>Lista:</h2>
-    <table id="tabelaLista"">
-        <tr>
-            <th>Codigo</th>
-            <th>UsuarioId</th>
-            <th>ProdutoId</th>
-            <th>ClienteId</th>
-            <th>Quantidade</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>   <input type="button" value="Editar"/>    <input type="button" value="Excluir"/></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>   <input type="button" value="Editar"/>    <input type="button" value="Excluir"/></td>
-        </tr>
+    <table id="tabelaLista">
+        
     </table>
+    <script src="/src/web/js/sale.js"></script>
 </body>
 
 
