@@ -104,14 +104,16 @@ async function loadTable(){
             data: response.data,
             columnDefs:[
                 {title: "Id", targets: 0},
-                {title: "Nome", targets: 1},
-                {title: "Email", targets: 2},
-                {title: "Administrador", targets: 3},
+                {title: "Nome cliente", targets: 1},
+                {title: "Nome", targets: 2},
+                {title: "Email", targets: 3},
+                {title: "Administrador", targets: 4},
                 {title: "Opções", targets: -1},
                 
             ],
             columns: [
                 { data: "id" },
+                { data: "clientName" },
                 { data: "name" },
                 { data: "email" },
                 { data: "admin" },
