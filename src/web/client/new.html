@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Gestão Clientes</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+</head>
+<body class="container">
+    <h1>Gestão Clientes</h1>
+    <section id="formCadastro">
+        <div id="tituloCadastro">
+            <h2>Criar cliente</h2>
+        </div>
+        <div id="dadosCadastro">
+                <label >ID:</label>
+                <input id="txtId" type="text">
+                
+                <label>Nome:</label>
+                <input id="txtName" type="text">
+
+                <label>CPF:</label>
+                <input id="txtCpf" type="text">
+
+                <label>Endereço:</label>
+                <input id="txtAddress" type="text">
+
+                <label>Telefone:</label>
+                <input id="txtPhone" type="text">
+
+            <div id="buttons">
+                <input class="btn btn-success" id="btnSalvar" type="button" value="Salvar">
+                <input class="btn btn-danger" id="btnLimpar" type="button" value="Limpar">
+                <a class="btn btn-secondary" href="/menu.html">Voltar ao menu</a>
+            </div>
+        </div>
+    </section>
+    
+    <br>
+    <h2>Lista:</h2>
+    <table class="tabela" id="tabelaLista">
+        
+    </table>
+    <script src="/src/web/js/client.js"></script>
+</body>
+
+
+</html>
